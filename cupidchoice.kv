@@ -1,0 +1,659 @@
+#:import dp kivy.metrics.dp
+<BaseScreen@Screen>:
+    background: "base.png"
+    canvas.before:
+        Rectangle:
+            source: self.background
+            pos: self.pos
+            size: self.size
+<LabelPink@Label>:
+    color: 0.9, 0.4, 0.6, 1
+    font_name: "Roboto"
+    halign: "center"
+    text_size: self.size
+<ButtonOption@Button>:
+    lang_index: -1
+
+<SplashScreen@BaseScreen>:
+    name: "splash"
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(40)
+        spacing: dp(10)
+    
+        Widget:
+            size_hint_y: 0.10
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: 0.65
+            size_hint_x: 0.8
+            pos_hint: {"center_x": 0.5}
+            spacing: dp(12)
+
+            Image:
+                id: cupid
+                source: "cupid.png"
+                size_hint_y: None
+                height: dp(200)
+                allow_stretch: True
+                keep_ratio: True
+                pos_hint: {"center_x": 0.5}
+
+            Label:
+                text: "Cupid Choice"
+                font_size: dp(34)
+                font_name: "Poppins-SemiBold.ttf"
+                color: 181/255, 74/255, 93/255, 1
+                halign: "center"
+                valign: "middle"
+                size_hint_y: None
+                height: self.texture_size[1]
+
+            Label:
+                text: "Kelompok 9 25B"
+                font_size: dp(18)
+                font_name: "Poppins-Regular.ttf"
+                color: 197/255, 95/255, 112/255, 1
+                halign: "center"
+                valign: "middle"
+                size_hint_y: None
+                height: self.texture_size[1] 
+
+            Label:
+                text: "Alin • Najla • Moza"
+                font_size: dp(15)
+                font_name: "Poppins-Regular.ttf"
+                color: 197/255, 95/255, 112/255, 1
+                halign: "center"
+                valign: "middle"
+                size_hint_y: None
+                height: self.texture_size[1]
+
+        # ---- Spacer bawah ---
+        Widget:
+            size_hint_y: 0.10
+
+<WelcomeScreen@BaseScreen>:
+    name: "welcome"
+
+    AnchorLayout:
+        padding: dp(30)
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 0.9, None
+            height: self.minimum_height
+            spacing: dp(12)
+            padding: dp(20)
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: "Welcome to Cupid's Choice!"
+                font_size: dp(28)
+                font_name: "Poppins-SemiBold.ttf"
+                bold: True
+                color: 181/255, 74/255, 93/255, 1
+                size_hint_y: None
+                text_size: self.width, None
+                halign: "center"
+                valign: "middle"
+                height: self.texture_size[1]
+
+            Label:
+                text: "Take this quiz to discover your primary love language, what it means, and how you can use it to better connect with your loved ones."
+                font_size: dp(16)
+                color: 218/255, 121/255, 138/255, 1
+                size_hint_y: None
+                text_size: self.width, None
+                font_name: "Quicksand-Regular.ttf"
+                halign: "center"
+                valign: "middle"
+                height: self.texture_size[1] * 1.3
+
+            Button:
+                text: "Start The Quiz"
+                size_hint: None, None
+                size: dp(220), dp(56)
+                pos_hint: {"center_x": 0.5}
+                background_normal: ""
+                background_color: 197/255, 95/255, 112/255, 1
+                color: 1, 1, 1, 1
+                font_size: dp(16)
+                font_name: "Nunito-Medium.ttf"
+                on_release:
+                    app.root.current = "nameinput"
+
+<NameInputScreen@BaseScreen>:
+    name: "nameinput"
+
+    AnchorLayout:
+        padding: dp(30)
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 0.9, None
+            height: self.minimum_height
+            spacing: dp(16)
+            padding: dp(20)
+            canvas.before:
+                Color:
+                    rgba: 1,1,1,1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: "What's your name?"
+                font_size: dp(22)
+                font_name: "Poppins-SemiBold.ttf"
+                color: 181/255, 74/255, 93/255, 1
+                halign: "center"
+
+            TextInput:
+                id: name_input
+                hint_text: "Enter your name"
+                multiline: False
+                size_hint_y: None
+                height: dp(50)
+                font_size: dp(16)
+                padding: dp(10)
+                background_color: 1,1,1,1
+                foreground_color: 0.3,0.1,0.2,1
+
+            Button:
+                text: "Continue"
+                size_hint_y: None
+                height: dp(50)
+                background_normal: ""
+                background_color: 197/255, 95/255, 112/255, 1
+                color: 1,1,1,1
+                on_release:
+                    root.save_name(name_input.text)
+
+<PurposeScreen@BaseScreen>:
+    name: "purpose"
+
+    AnchorLayout:
+        padding: dp(30)
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 0.9, None
+            height: self.minimum_height
+            spacing: dp(18)
+            padding: dp(20)
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: "What's your purpose to join this test?"
+                font_size: dp(20)
+                color: 181/255, 74/255, 93/255, 1
+                size_hint_y: None
+                height: self.texture_size[1] * 1.25
+                halign: "center"
+                valign: "middle"
+                text_size: self.width, None
+                font_name: "Poppins-SemiBold.ttf"
+
+            Button:
+                text: "Kenali Diri Saya"
+                size_hint: 1, None
+                height: dp(56)
+                background_normal: ""
+                background_color: 197/255, 95/255, 112/255, 1
+                color: 1, 1, 1, 1
+                font_size: dp(16)
+                font_name: "Quicksand-SemiBold.ttf"
+                on_release: root.choose_purpose("self")
+
+            Button:
+                text: "Percintaan"
+                size_hint: 1, None
+                height: dp(56)
+                background_normal: ""
+                background_color: 197/255, 95/255, 112/255, 1
+                color: 1, 1, 1, 1
+                font_size: dp(16)
+                font_name: "Quicksand-SemiBold.ttf"
+                on_release: root.choose_purpose("relationship")
+
+            Button:
+                text: "Pertemanan"
+                size_hint: 1, None
+                height: dp(56)
+                background_normal: ""
+                background_color: 197/255, 95/255, 112/255, 1
+                color: 1, 1, 1, 1
+                font_size: dp(16)
+                font_name: "Quicksand-SemiBold.ttf"
+                on_release: root.choose_purpose("friendship")
+
+<QuestionScreen@BaseScreen>:
+    name: "question"
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(18)
+        spacing: dp(12)
+    
+        Label:
+            id: qlabel
+            text: root.question_text
+            size_hint_y: 0.25
+            text_size: self.width - dp(20), None
+            halign: "left"
+            valign: "middle"
+            font_size: dp(18)
+            font_name: "Quicksand-Regular.ttf"
+            color: 0.35, 0.15, 0.25, 1
+        GridLayout:
+            cols: 1
+            size_hint_y: 0.75
+            spacing: dp(10)
+            padding: dp(8)
+            ButtonOption:
+                id: opt0
+                text: " "
+                size_hint_y: None
+                height: dp(56)
+                background_normal: ""
+                background_color: 242/255, 183/255, 195/255, 1
+                color: 1, 1, 1, 1
+                font_name: "Nunito-Medium.ttf"
+                on_release: root.choose(self.lang_index)
+            ButtonOption:
+                id: opt1
+                text: " "
+                size_hint_y: None
+                height: dp(56)
+                background_normal: ""
+                background_color: 232/255, 163/255, 173/255, 1
+                color: 1, 1, 1, 1
+                font_name: "Nunito-Medium.ttf"
+                on_release: root.choose(self.lang_index)
+            ButtonOption:
+                id: opt2
+                text: " "
+                size_hint_y: None
+                height: dp(56)
+                background_normal: ""
+                background_color: 218/255, 121/255, 138/255, 1
+                color: 1, 1, 1, 1
+                font_name: "Nunito-Medium.ttf"
+                on_release: root.choose(self.lang_index)
+            ButtonOption:
+                id: opt3
+                text: " "
+                size_hint_y: None
+                height: dp(56)
+                background_normal: ""
+                background_color: 203/255, 106/255, 123/255, 1
+                color: 1, 1, 1, 1
+                font_name: "Nunito-Medium.ttf"
+                on_release: root.choose(self.lang_index)
+            ButtonOption:
+                id: opt4
+                text: " "
+                size_hint_y: None
+                height: dp(56)
+                background_normal: ""
+                background_color: 197/255, 95/255, 112/255, 1
+                color: 1, 1, 1, 1
+                font_name: "Nunito-Medium.ttf"
+                on_release: root.choose(self.lang_index)
+
+    BoxLayout:
+        size_hint_y: None 
+        height: dp(80)
+        spacing: dp(10)
+        padding: dp(30), dp(12)
+
+        Button: 
+            id: back_btn
+            text: "Back"
+            size_hint_x: None
+            width: dp(130)
+            font_name: "Nunito-Medium.ttf"
+            background_normal: ""
+            background_color: 197/255, 95/255, 112/255, 1
+            color: 1, 1, 1, 1
+            pos_hint: {"center_y": 0.5}
+            on_release: root.prev_question()
+
+            opacity: 1 if root.show_back else 0
+            disabled: False if root.show_back else True
+
+<ResultScreen@BaseScreen>:
+    name: "result"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(12)
+
+
+       
+        BoxLayout:
+            id: capture_area
+            orientation: "vertical"
+            spacing: dp(10)
+            padding: dp(18)
+            size_hint_y: 0.88
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+
+            # ======================= TITLE =======================
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: dp(70)
+                spacing: dp(4)
+
+                Label:
+                    text: root.user_title
+                    font_size: dp(20)
+                    font_name: "Poppins-Regular.ttf"
+                    color: 218/255, 121/255, 138/255, 1
+
+                Label:
+                    id: dominant
+                    text: root.dominant_text
+                    font_size: dp(26)
+                    font_name: "Poppins-SemiBold.ttf"
+                    bold: True
+                    color: 181/255, 74/255, 93/255, 1
+
+
+
+            # ======================= DETAIL DESCRIPTION =======================
+            Label:
+                text: root.detail_text
+                font_size: dp(14)
+                font_name: "Quicksand-SemiBold.ttf"
+                color: 203/255, 106/255, 123/255, 1
+                text_size: self.width, None
+                halign: "center"
+                valign: "middle"
+                size_hint_y: None
+                height: self.texture_size[1] + dp(5)
+
+
+
+            # ======================= BAR CHART + PERCENTAGES =======================
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: 0.80
+                padding: 0, -dp(80), 0, dp(10)
+                spacing: dp(6)
+
+                Label:
+                    text: "Result Breakdown"
+                    font_size: dp(18)
+                    font_name: "Poppins-SemiBold.ttf"
+                    color: 197/255, 95/255, 112/255, 1
+                    size_hint_y: None
+                    height: dp(280)
+                    halign: "center"
+                    valign: "middle"
+                    text_size: self.size
+
+            AnchorLayout:
+                size_hint_y: 0.55
+                anchor_x: "center"
+                anchor_y: "top"
+                padding: 0, -dp(135), 0, 0
+
+                GridLayout:
+                    cols: 3
+                    rows: 5
+                    row_default_height: dp(40)
+                    row_force_default: True
+                    size_hint: None, None
+                    width: dp(720)          
+                    height: dp(40) * 5
+                    spacing: dp(10)
+
+                    # BAR 1
+                    Label:
+                        text: "Words of Affirmation"
+                        font_size: dp(13)
+                        font_name: "Nunito-Medium.ttf"
+                        color: 0.6, 0.2, 0.3, 1
+                        halign: "right"
+                        text_size: self.width, None
+                    Widget:
+                        canvas.before:
+                            Color:
+                                rgba: 0.95, 0.85, 0.9, 1
+                            Rectangle:
+                                pos: self.x, self.y + dp(10)
+                                size: self.width, dp(22)
+                            Color:
+                                rgba: 1, 0.6, 0.8, 1
+                            Rectangle:
+                                pos: self.x, self.y + dp(10)
+                                size: self.width * (root.percentages[0] / 100.0), dp(22)
+                    Label:
+                        text: f"{root.percentages[0]}%"
+                        font_size: dp(13)
+                        font_name: "Nunito-Medium.ttf"
+                        color: 0.7, 0.25, 0.4, 1
+                        halign: "left"
+                        text_size: self.width, None
+
+                    # BAR 2
+                    Label:
+                        text: "Acts of Service"
+                        font_size: dp(13)
+                        font_name: "Nunito-Medium.ttf"
+                        color: 0.6, 0.2, 0.3, 1
+                        halign: "right"
+                        text_size: self.width, None
+                    Widget:
+                        canvas.before:
+                            Color:
+                                rgba: 0.95, 0.85, 0.9, 1
+                            Rectangle:
+                                pos: self.x, self.y + dp(10)
+                                size: self.width, dp(22)
+                            Color:
+                                rgba: 1, 0.58, 0.78, 1
+                            Rectangle:
+                                pos: self.x, self.y + dp(10)
+                                size: self.width * (root.percentages[1] / 100.0), dp(22)
+                    Label:
+                        text: f"{root.percentages[1]}%"
+                        font_size: dp(13)
+                        font_name: "Nunito-Medium.ttf"
+                        color: 0.7, 0.25, 0.4, 1
+                        halign: "left"
+                        text_size: self.width, None
+
+                    # BAR 3
+                    Label:
+                        text: "Receiving Gifts"
+                        font_size: dp(13)
+                        font_name: "Nunito-Medium.ttf"
+                        color: 0.6, 0.2, 0.3, 1
+                        halign: "right"
+                        text_size: self.width, None
+                    Widget:
+                        canvas.before:
+                            Color:
+                                rgba: 0.95, 0.85, 0.9, 1
+                            Rectangle:
+                                pos: self.x, self.y + dp(10)
+                                size: self.width, dp(22)
+                            Color:
+                                rgba: 0.99, 0.66, 0.83, 1
+                            Rectangle:
+                                pos: self.x, self.y + dp(10)
+                                size: self.width * (root.percentages[2] / 100.0), dp(22)
+                    Label:
+                        text: f"{root.percentages[2]}%"
+                        font_size: dp(13)
+                        font_name: "Nunito-Medium.ttf"
+                        color: 0.7, 0.25, 0.4, 1
+                        halign: "left"
+                        text_size: self.width, None
+                    
+                    # BAR 4
+                    Label:
+                        text: "Quality Time"
+                        font_size: dp(13)
+                        font_name: "Nunito-Medium.ttf"
+                        color: 0.6, 0.2, 0.3, 1
+                        halign: "right"
+                        text_size: self.width, None
+                    Widget:
+                        canvas.before:
+                            Color:
+                                rgba: 0.95, 0.85, 0.9, 1
+                            Rectangle:
+                                pos: self.x, self.y + dp(10)
+                                size: self.width, dp(22)
+                            Color:
+                                rgba: 0.96, 0.55, 0.78, 1
+                            Rectangle:
+                                pos: self.x, self.y + dp(10)
+                                size: self.width * (root.percentages[3] / 100.0), dp(22)
+                    Label:
+                        text: f"{root.percentages[3]}%"
+                        font_size: dp(13)
+                        font_name: "Nunito-Medium.ttf"
+                        color: 0.7, 0.25, 0.4, 1
+                        halign: "left"
+                        text_size: self.width, None
+
+                    # BAR 5
+                    Label:
+                        text: "Physical Touch"
+                        font_size: dp(13)
+                        font_name: "Nunito-Medium.ttf"
+                        color: 0.6, 0.2, 0.3, 1
+                        halign: "right"
+                        text_size: self.width, None
+                    Widget:
+                        canvas.before:
+                            Color:
+                                rgba: 0.95, 0.85, 0.9, 1
+                            Rectangle:
+                                pos: self.x, self.y + dp(10)
+                                size: self.width, dp(22)
+                            Color:
+                                rgba: 0.94, 0.72, 0.90, 1
+                            Rectangle:
+                                pos: self.x, self.y + dp(10)
+                                size: self.width * (root.percentages[4] / 100.0), dp(22)
+                    Label:
+                        text: f"{root.percentages[4]}%"
+                        font_size: dp(13)
+                        font_name: "Nunito-Medium.ttf"
+                        color: 0.7, 0.25, 0.4, 1
+                        halign: "left"
+                        text_size: self.width, None
+
+                    
+        # ======================= BUTTONS =======================
+        BoxLayout:
+            size_hint_y: 0.12
+            spacing: dp(10)
+
+            Button:
+                text: "Finish"
+                font_name: "Nunito-Medium.ttf"
+                background_normal: ""
+                background_color: 218/255, 121/255, 138/255, 1
+                color: 1,1,1,1
+                on_release: app.root.current = "thankyou"
+
+            Button:
+                text: "Retry"
+                font_name: "Nunito-Medium.ttf"
+                background_normal: ""
+                background_color: 232/255, 163/255, 173/255, 1
+                color: 181/255, 74/255, 93/255, 1
+                on_release:
+                    app.root.get_screen('question').reset_quiz()
+                    app.root.current = "question"
+
+<ThankYouScreen@BaseScreen>: 
+    name: "thankyou"
+    BoxLayout: 
+        orientation: "vertical" 
+        padding: dp(30) 
+        spacing: dp(16) 
+        
+        # --- Spacer atas --- 
+        Widget: 
+            size_hint_y: 0.02
+        # --- Konten utama di tengah --- 
+        BoxLayout: 
+            orientation: "vertical" 
+            size_hint_y: 0.5 
+            size_hint_x: 0.9 
+            pos_hint: {"center_x": 0.5} 
+            spacing: dp(14) 
+            padding: dp(10)
+
+            Image: 
+                source: "cupid.png" 
+                size_hint_y: None 
+                height: dp(250) 
+                allow_stretch: True 
+                keep_ratio: True
+
+            Label: 
+                text: "Thank you for joining this test!" 
+                font_size: dp(20) 
+                font_name: "Poppins-SemiBold.ttf"
+                color: 181/255, 74/255, 93/255, 1
+                halign: "center" 
+                valign: "middle" 
+                text_size: self.width, None
+
+            Button: 
+                text: "Back to Home" 
+                size_hint: None, None 
+                size: dp(200), dp(50) 
+                pos_hint: {"center_x": 0.5}
+                font_name: "Nunito-Medium.ttf" 
+                background_normal: "" 
+                background_color: 218/255, 121/255, 138/255, 1
+                color: 1, 1, 1, 1 
+                on_release: 
+                    app.root.current = 'splash'
+        # --- BAGIAN DOWNLOAD --- 
+        Button: 
+            text: "Download Result" 
+            size_hint: None, None 
+            size: dp(200), dp(50) 
+            pos_hint: {"center_x": 0.5} 
+            font_name: "Nunito-Medium.ttf"
+            background_normal: "" 
+            background_color: 197/255, 95/255, 112/255, 1
+            color: 1,1,1,1 
+            on_release: root.download_result()
+# Root ScreenManager
+ScreenManager:
+    SplashScreen:
+    WelcomeScreen:
+    PurposeScreen:
+    NameInputScreen:
+    QuestionScreen:
+    ResultScreen:
+    ThankYouScreen:
